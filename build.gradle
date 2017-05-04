@@ -1,8 +1,9 @@
 group 'com.snufkin'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'application'
-mainClassName = 'App'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 
@@ -12,4 +13,31 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile fileTree(dir: "WebContent/WEB-INF/lib", include: '*.jar')
+    compile 'org.apache.tomcat:tomcat-servlet-api:7.0.42'
+    compile 'org.apache.tomcat:tomcat-jsp-api:7.0.42'
+}
+
+project.webAppDirName = 'WebContent'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+        }
+    }
+}
+
+war {
+    exclude 'WEB-INF/lib/**'
+    exclude 'WEB-INF/classes/**'
+}
+
+def defaultEncoding = 'UTF-8'
+compileJava {
+    options.encoding = defaultEncoding
 }
