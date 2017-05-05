@@ -12,5 +12,6 @@ public class ShowDateServlet extends  javax.servlet.http.HttpServlet implements 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(new java.util.Date());
+        out.println("Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii!!!!!");
     }
 }
